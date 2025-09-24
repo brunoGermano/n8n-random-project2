@@ -4,13 +4,10 @@ const { task, src, dest } = require('gulp');
 task('build:icons', copyIcons);
 
 function copyIcons() {
-	const nodeSource = path.resolve('nodes', '**', '*.{png,svg}');
-	const nodeDestination = path.resolve('dist', 'nodes');
+  const nodeSource = path.resolve('nodes', '**', '*.{png,svg}');
+  const nodeDestination = path.resolve('dist', 'nodes');
 
-	src(nodeSource).pipe(dest(nodeDestination));
-
-	const credSource = path.resolve('credentials', '**', '*.{png,svg}');
-	const credDestination = path.resolve('dist', 'credentials');
-
-	return src(credSource).pipe(dest(credDestination));
+  // O script original tentava copiar credenciais, o que causava o erro.
+  // Agora, ele só copia os ícones dos nós.
+  return src(nodeSource).pipe(dest(nodeDestination));
 }
