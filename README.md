@@ -31,19 +31,21 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
 2. **Docker e Docker Compose:** [Siga o guia oficial de instalação do Docker.](https://docs.docker.com/engine/install/ubuntu/) <!-- Substitua pelo seu link -->
 
 3. **NVM (Node Version Manager):** Recomendado para gerenciar as versões do Node.js.
-    Bash
+```Bash
    
         # Instalar o NVM
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
         # Após instalar, feche e reabra o terminal
+    
+```
 
 5. **Node.js v22 LTS:**
-    Bash
+```Bash
     
         # Instalar e usar a versão 22
         nvm install 22
         nvm use 22
-
+```
 ## Como Rodar o Projeto 🏎️
 
 Siga estes passos para configurar e executar o ambiente completo na sua máquina local.
@@ -51,19 +53,19 @@ Siga estes passos para configurar e executar o ambiente completo na sua máquina
 1. **Clone o Repositório**
 
 Primeiro, clone este repositório para a sua máquina.
-Bash
+```Bash
 
     git clone https://github.com/seu-usuario/seu-repositorio.git
     cd seu-repositorio
-
+```
 2. **Configure as Variáveis de Ambiente**
 
 O n8n precisa de credenciais para se conectar ao banco de dados PostgreSQL. Nós gerenciamos isso através de um arquivo .env.
-Bash
+```Bash
 
     # Crie uma cópia do arquivo de exemplo
     cp .env.example .env
-
+```
 O arquivo .env já vem com valores padrão que funcionam localmente, mas sinta-se à vontade para alterá-los se desejar.
 
 (**Observação:** O arquivo .env está listado no .gitignore para garantir que segredos nunca sejam enviados para o repositório).
@@ -71,27 +73,23 @@ O arquivo .env já vem com valores padrão que funcionam localmente, mas sinta-s
 3. **Instale as Dependências do Nó**
 
 Navegue até a pasta do nosso conector customizado e instale as dependências usando o npm.
-Bash
+```Bash
 
-    cd custom-nodes/n8n-nodes-random
+    # Na pasta raiz do projeto execute
     npm install
-
+```
 4. **Compile o Nó Customizado**
 
 Com as dependências instaladas, compile o código TypeScript para JavaScript, que é o que o n8n irá executar.
-Bash
-    
+```Bash 
     npm run build
-    # Volte para a pasta raiz do projeto
-    cd ../../
-
+```
 5. **Suba os Serviços com Docker Compose**
 
 Agora, vamos iniciar o n8n e o banco de dados PostgreSQL!
-Bash
-
-    docker compose up -d
-
+```Bash
+		docker compose up -d
+```
 ### 🐧 Dica para usuários Linux: Se você encontrar erros de permissão ao iniciar o Docker, pode ser necessário ajustar o dono da pasta de dados do n8n. Execute o comando abaixo na raiz do projeto:
     
     sudo chown -R 1000:1000 n8n-data
@@ -117,19 +115,16 @@ Após iniciar os contêineres, o ambiente estará pronto em alguns instantes.
 Aqui estão alguns comandos úteis do Docker para gerenciar o ambiente:
 
 * **Ver os logs do n8n em tempo real:**
-    Bash
-    
-        docker compose logs -f n8n
-
+```Bash
+		docker compose logs -f n8n
+```
 * **Parar todos os serviços:**
-    Bash
-    
-        docker compose down
-
+```Bash 
+		docker compose down
+```
 * **Parar e remover os volumes (reset completo):**
-    Bash
-    
-        docker compose down -v
-
+```Bash 
+		docker compose down -v
+```
 Este README.md cobre todos os pontos necessários e serve como um excelente guia para qualquer pessoa que queira executar e avaliar este projeto.
 
