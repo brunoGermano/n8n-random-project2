@@ -21,14 +21,14 @@ services:
       - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
       - DB_POSTGRESDB_USER=${POSTGRES_USER}
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
-      # Variável de ambiente para instalar nós customizados
-      - NODE_FUNCTION_ALLOW_EXTERNAL=n8n-nodes-random
+      # Esta variável diz ao n8n para carregar o pacote em modo de desenvolvimento
+      - N8N_DEV_PACKAGES=n8n-nodes-random
     ports:
       - "5678:5678"
     volumes:
       - n8n_data:/home/node/.n8n
-      # Mapeia a pasta do seu nó para dentro do contêiner
-      - ./custom-nodes/n8n-nodes-random:/usr/local/lib/node_modules/n8n-nodes-random
+      # Mapeia a pasta inteira do seu projeto para dentro do contêiner
+      - ./:/home/node/n8n-nodes-random
 
 volumes:
   db_data:
