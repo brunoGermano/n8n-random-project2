@@ -17,10 +17,13 @@
       "~/*": [
         "src/*"
       ]
-    }
+    },
+    // ADICIONADO: Esta linha diz ao TypeScript para manter a estrutura de pastas
+    // a partir da raiz do projeto. É a chave para a correção.
+    "rootDir": "."
   },
+  // CORRIGIDO: Deve incluir apenas a pasta 'nodes' (onde está o código-fonte)
   "include": [
-    "nodes",
-    "credentials"
+    "nodes"
   ]
 }
