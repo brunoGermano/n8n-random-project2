@@ -52,51 +52,53 @@ Siga estes passos para configurar e executar o ambiente completo na sua máquina
 
 1. **Clone o Repositório**
 
-Primeiro, clone este repositório para a sua máquina.
-```Bash
-
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    cd seu-repositorio
-```
+	Primeiro, clone este repositório para a sua máquina.
+	```Bash
+	
+	    git clone https://github.com/seu-usuario/seu-repositorio.git
+	    cd seu-repositorio
+	```
 2. **Configure as Variáveis de Ambiente**
 
-O n8n precisa de credenciais para se conectar ao banco de dados PostgreSQL. Nós gerenciamos isso através de um arquivo .env.
-```Bash
+	O n8n precisa de credenciais para se conectar ao banco de dados PostgreSQL. Nós gerenciamos isso através de um arquivo .env.
+	```Bash
+	
+	    # Crie uma cópia do arquivo de exemplo
+	    cp .env.example .env
+	```
+	O arquivo .env já vem com valores padrão que funcionam localmente, mas sinta-se à vontade para alterá-los se desejar.
+	
+	(**Observação:** O arquivo .env está listado no .gitignore para garantir que segredos nunca sejam enviados para o repositório).
 
-    # Crie uma cópia do arquivo de exemplo
-    cp .env.example .env
-```
-O arquivo .env já vem com valores padrão que funcionam localmente, mas sinta-se à vontade para alterá-los se desejar.
+3. **Instale as Dependências do Nó:**
 
-(**Observação:** O arquivo .env está listado no .gitignore para garantir que segredos nunca sejam enviados para o repositório).
+	**ATENÇÃO:** A instalação deve ser feita DENTRO da pasta do nó customizado.
 
-3. **Instale as Dependências do Nó**
-** ATENÇÃO:** A instalação deve ser feita DENTRO da pasta do nó customizado.
-Navegue até a pasta do nosso conector customizado e instale as dependências usando o npm.
-```Bash
-
-    # 1. Navegue para a pasta do nó customizado
-		cd custom-nodes/n8n-nodes-random
-		
-		# 2. Instale as dependências
-    npm install
-```
+	Navegue até a pasta do nosso conector customizado e instale as dependências usando o npm.
+	```Bash
+			# 1. Navegue para a pasta do nó customizado
+			cd custom-nodes/n8n-nodes-random
+	
+			# 2. Instale as dependências
+			npm install
+	```
 4. **Compile o Nó Customizado**
 
-Com as dependências instaladas compile o código TypeScript para JavaScript, que é o que o n8n irá executar.
-```Bash 
-    npm run build
-```
+	Com as dependências instaladas compile o código TypeScript para JavaScript, que é o que o n8n irá executar.
+	```Bash 
+	    npm run build
+	```
 5. **Suba os Serviços com Docker Compose**
 
-Agora, retorne para a pasta raiz do projeto e vamos iniciar o n8n e o banco de dados PostgreSQL!
-```Bash
-		# 1. Volte para a pasta raiz do projeto
-		cd ../../
-		
-		# 2. Suba os serviços
-		docker compose up -d
-```
+	Agora, retorne para a pasta raiz do projeto e vamos iniciar o n8n e o banco de dados PostgreSQL!
+	
+	```Bash
+			# 1. Volte para a pasta raiz do projeto
+			cd ../../
+			
+			# 2. Suba os serviços
+			docker compose up -d
+	```
 ### 🐧 Dica para usuários Linux: Se você encontrar erros de permissão ao iniciar o Docker, pode ser necessário ajustar o dono da pasta de dados do n8n. Execute o comando abaixo na raiz do projeto:
     
     sudo chown -R 1000:1000 n8n-data
